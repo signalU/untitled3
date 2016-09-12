@@ -1,0 +1,34 @@
+<template name="header">
+    <header >
+        <div class="navbar-fixed light-blue">
+            <nav class="light-blue">
+                <div class="nav-wrapper">
+                    <!--<h1 class="brand-logo"><img src="/img/logo.png"></h1>-->
+                    {{#if showMenu}}
+                        <a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="mdi-navigation-menu"></i></a>
+                        <ul class="right hide-on-med-and-down">
+                            {{#each menu}}
+                                <li><a href='{{href}}'><i class="{{icon}}  orange-text left"></i> {{value}}</a></li>
+                            {{/each}}
+                        </ul>
+                        <ul id="nav-mobile" class="side-nav">
+                            {{#each menu}}
+                                <li><a href='{{href}}'><i class="{{icon}} yellow-text text-lighten-2 left"></i> {{value}}</a></li>
+                            {{/each}}
+                        </ul>
+
+                        <ul class="side-nav" id="mobile-demo">
+
+                        </ul>
+
+                    {{/if}}
+                </div>
+            </nav>
+        </div>
+    </header>
+    <script>
+        $( document ).ready(function(){
+            $(".button-collapse").sideNav();
+        })
+    </script>
+</template>

@@ -1,0 +1,34 @@
+<template name="selectProposition">
+    <!--<div class="col input-field s6">-->
+        <!--<select id="singleProposition">-->
+            <!--{{#each proposition}}-->
+                <!--&lt;!&ndash;<option value="{{_id}}" {{isThisLine _id}}>{{name}}</option>&ndash;&gt;-->
+                <!--<option class="option" value="{{_id}}">{{name}}</option>-->
+            <!--{{/each}}-->
+        <!--</select>-->
+        <!--<label for="lines">Linea</label>-->
+    <!--</div>-->
+
+
+    <div class="col input-field s6">
+
+        <div class="row">
+            <select id="singleProposition_{{index}}">
+                {{#each proposition}}
+                    <!--<option value="{{_id}}" {{isThisLine _id}}>{{name}}</option>-->
+                    <label for="sub_{{index}}_proposition" class="active">Pros</label>
+                    <option name="sub_{{index}}_proposition" id="sub_{{index}}_proposition" class="option" value="{{_id}}">{{name}}</option>
+                {{/each}}
+            </select>
+
+            <div class="col input-field s3" style="margin:0 0 23px;">
+                <input type="checkbox" class="filled-in"  id="status{{index}}" />
+                <label for="status{{index}}"></label>
+            </div>
+
+            <!--<label for="lines">Proposition</label>-->
+
+        </div>
+
+    </div>
+</template>

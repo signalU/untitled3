@@ -1,0 +1,25 @@
+<template name="formProposition">
+    <h1>Add a new proposition</h1>
+    <form id="formProposition">
+        <div class="container">
+
+
+            <div class="row">
+                <p class="name input-field col s12">
+                    <label for="name" class="active">Nombre:</label>
+                    <input class="name" id="name" type="text" value="{{name}}" required/>
+                </p>
+            </div>
+
+            <div class="row">
+                <!--{{#if isEditing}}-->
+                    <!--<a class="btn waves-effect waves-light red left" id="delete">ELIMINAR</a>-->
+                <!--{{/if}}-->
+                <button class="btn waves-effect waves-light right green" id="save" style="margin-left:1em;" type="submit">SAVE</button>
+                <a class="btn waves-effect waves-light right grey" id="cancel">CANCEL</a>
+            </div>
+        </div>
+    </form>
+
+    {{propostions.name}}
+</template>

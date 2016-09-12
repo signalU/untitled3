@@ -1,0 +1,20 @@
+<template name="formRecognizer">
+    <form id="formRecognizer">
+
+        <div class="row">
+            <p class="name input-field col s12">
+                <label for="sentence" class="active">Sentence:</label>
+                <input class="sentence" id="sentence" type="text"  required/>
+            </p>
+        </div>
+
+        <div class="row">
+        <!--{{#if isEditing}}-->
+            <!--<a class="btn waves-effect waves-light red left" id="delete">ELIMINAR</a>-->
+                <!--{{/if}}-->
+            <button class="btn waves-effect waves-light right green" id="save" style="margin-left:1em;" type="submit">SAVE</button>
+            <a class="btn waves-effect waves-light right grey" id="cancel">CANCEL</a>
+        </div>
+
+    </form>
+</template>

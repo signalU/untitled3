@@ -1,0 +1,15 @@
+<template name="ListPropositions">
+    <h3>Propositions</h3>
+
+    <div class="fixed-action-btn" style="bottom: 2em; right: 2em;">
+        <a href="{{pathFor 'propositions.add'}}" class="btn-floating btn-large green">
+            <i class="large mdi-content-add"></i>
+        </a>
+    </div>
+    <ul class="collection with-header">
+        <li class="collection-header"> <h3> Recently added</h3> </li>
+        {{#each proposition}}
+            <li class="collection-item">{{name}}</li>
+        {{/each}}
+    </ul>
+</template>

@@ -1,0 +1,144 @@
+<template name="formRule">
+    <h3>Add a rule</h3>
+
+    <div class="container">
+
+
+
+
+
+        <!--<div class="col input-field s6">-->
+            <!--<select id="singleProposition">-->
+                <!--{{#each proposition}}-->
+                    <!--&lt;!&ndash;<option value="{{_id}}" {{isThisLine _id}}>{{name}}</option>&ndash;&gt;-->
+                        <!--<option class="option" value="{{_id}}">{{name}}</option>-->
+                <!--{{/each}}-->
+            <!--</select>-->
+            <!--<label for="lines">Linea</label>-->
+        <!--</div>-->
+
+        <!--<ul>-->
+        <!--{{#each proposition}}-->
+            <!--<li id="pros">-->
+                <!--<div>-->
+                    <!--{{name}}-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;{{status}}&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<div class="col input-field s3" style="margin:0 0 23px;">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox" class="filled-in"  id="status" {{status}}/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="status">value</label>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                <!--<div>-->
+                    <!--<button id="addTemp"> Add</button>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--{{/each}}-->
+        <!--</ul>-->
+
+        <form id="formRule">
+
+
+            <div class="row">
+                <div class="col s6">
+                    <ul>
+
+                        {{#each singleProposition}}
+                            <li class="collection-item">
+
+                                <div class="col s11">
+                                    <div class="row valign-wrapper" id="pros">
+                                        <div class="col s1 valign">
+                                            <div class="valign-wrapper grey darken-2 circle" style="width:3.6em;height:3.6em;">
+                                                <div class="valign white-text" style="margin:0 auto;font-size:32px;">{{indexPlusOne}}</div>
+                                            </div>
+                                        </div>
+                                        <!--<div class="col s3 input-field">-->
+                                        <!--<input id="sub_{{index}}_sku" type="text" name="sku" value="{{sku}}"/>-->
+                                        <!--<label for="sub_{{index}}_sku" class="active">Sku</label>-->
+                                        <!--</div>-->
+
+
+                                        {{> selectProposition}}
+
+                                        <!--<div class="col input-field s6">-->
+                                        <!--<select id="singleProposition">-->
+                                            <!--{{#each proposition}}-->
+                                        <!--&lt;!&ndash;<option value="{{_id}}" {{isThisLine _id}}>{{name}}</option>&ndash;&gt;-->
+                                        <!--<label for="sub_{{index}}_proposition" class="active">Pros</label>-->
+                                        <!--<option name="sub_{{index}}_proposition" id="sub_{{index}}_proposition" class="option" value="{{_id}}">{{name}}</option>-->
+                                            <!--{{/each}}-->
+                                        <!--</select>-->
+                                        <!---->
+                                        <!--<label for="lines">Proposition</label>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="col s7 input-field">-->
+                                        <!--<label for="sub_{{index}}_description" class="active">Descripcion</label>-->
+                                        <!--<input type="text" name="sub_{{index}}_description" id="sub_{{index}}_description" value="{{description}}"/>-->
+                                        <!--</div>-->
+                                        <!--<div class="col s2 input-field">-->
+                                        <!--<label for="sub_{{index}}_quantity" class="active">Cantidad</label>-->
+                                        <!--<input type="number" step="1" min="0" name="sub_{{index}}_quantity" id="sub_{{index}}_quantity" value="{{quantity}}"/>-->
+                                        <!--</div>-->
+                                    </div>
+
+                                </div>
+                            </li>
+                        {{else}}
+                            <li class="collection-item">
+                                Click to (+)
+                            </li>
+                        {{/each}}
+
+
+                        <li class="collection-item">
+                            <button type="button" class="btn right" id="addSingleProposition"><i class="mdi-content-add"></i>new</button>
+                            <button type="button" class="btn right red" id="removeSingleProposition" style="margin-bottom:10px;margin-right:0.5em;"><i class="mdi-content-backspace"></i></button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col s6">
+                    <div class="row">
+                        <div class="col s6">
+                            <select id="singlePropositionConsequent">
+                                {{#each proposition}}
+                                    <!--<option value="{{_id}}" {{isThisLine _id}}>{{name}}</option>-->
+                                    <label for="consequentProposition" class="active">Pros</label>
+                                    <option  class="option" value="{{_id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+
+                        <div class="col input-field s6" style="margin:0 0 23px;">
+                            <input type="checkbox" class="filled-in"  id="statusConsequent" />
+                            <label for="statusConsequent"></label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <button class="btn waves-effect waves-light right green" id="save" style="margin-left:1em;" type="submit">GUARDAR</button>
+                <a class="btn waves-effect waves-light right grey" id="cancel">CANCELAR</a>
+            </div>
+
+
+
+        </form>
+
+        <!--<div class="col input-field s3" style="margin:0 0 23px;">-->
+            <!--<input type="checkbox" class="filled-in"  id="status{{index}}" />-->
+            <!--<label for="status"></label>-->
+        <!--</div>-->
+
+
+    </div>
+
+</template>

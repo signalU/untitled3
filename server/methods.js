@@ -27,7 +27,10 @@ Meteor.methods({
     callPython: function(obj) {
         var fut = new Future();
         // exec('pythonScriptCommand with parameters', function (error, stdout, stderr) {
-        exec('python /home/diego/Desktop/py/file.py ' + obj, function (error, stdout, stderr) {
+        // exec('python /home/diego/Desktop/py/file.py ' + "' "+ obj + " '", function (error, stdout, stderr) {
+        // exec('python3 /home/diego/Documents/IDS/6 semester/Expert Systems/Practices/Expert1/solve/solve.py ' + obj, function (error, stdout, stderr) {
+        var dir = 'python3 /home/diego/Documents/IDS/6_semester/ExpertSystems/Practices/Expert1/solve/solve.py ';
+        exec(dir + " ' "+ obj + " '" , function (error, stdout, stderr) {
             if(error){
                 console.log(error.reason, ": error");
                 throw new Meteor.Error(error, error);
@@ -52,6 +55,7 @@ Meteor.methods({
                         timestamp : new Date().getTime(),
                         data : stderr
                     });
+                    throw new Meteor.Error(stderr, stderr);
                 }
 
 

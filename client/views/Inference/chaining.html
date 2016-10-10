@@ -33,7 +33,36 @@
 
         </div>
         <div class="col s6">
-            {{>rulesList}}
+            <!--{{>rulesList}}-->
+            <h2> Rules</h2>
+            {{#each rule}}
+                <li class="collection-item">
+                    {{#each predecessor}}
+                        {{#if isFalse}}
+                            <label class="red-text">"NO"</label>
+                        {{/if}}
+                        <!--{{name }}  "AND"-->
+                        <!--{{#if value}}-->
+                            <!--1-->
+                        <!--{{else}}-->
+                        {{> nameRule }}  <label class="blue-text">"AND"</label>
+                        <!--{{ namePre _idAntecesorProposition}}  <label class="blue-text">"AND"</label>-->
+
+                        <!--{{/if}}-->
+                    {{/each}}
+                    --->
+                    {{#with consequent}}
+                        {{#if isFalse}}
+                            <!--"NO"-->
+                            <label class="red-text">"NO"</label>
+                        {{/if}}
+
+                        {{>nameConsequent}}
+                        <!--{{namePre _idConsequent}}-->
+                    {{/with}}
+                </li>
+
+            {{/each}}
         </div>
 
     </div>

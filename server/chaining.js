@@ -90,5 +90,8 @@ Meteor.methods({
 
         });
         return fut.wait();
+    },
+    allRules: function () {
+        return Rules.find().fetch();
     }
 });

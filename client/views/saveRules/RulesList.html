@@ -13,12 +13,20 @@
             <li class="collection-item">
                 {{#each predecessor}}
                     {{#if isFalse}}
-                        "NO"
+                        <label class="red-text">"NO"</label>
                     {{/if}}
-                    {{name }}  "AND"
+                    <!--{{name }}  "AND"-->
+                    {{> nameRule }}  <label class="blue-text">"AND"</label>
                 {{/each}}
                 --->
-                {{nameConsequent}}
+                {{#with consequent}}
+                    {{#if isFalse}}
+                        <!--"NO"-->
+                        <label class="red-text">"NO"</label>
+                    {{/if}}
+
+                    {{>nameConsequent}}
+                {{/with}}
             </li>
 
         {{/each}}

@@ -15,7 +15,7 @@ Template.formProposition.events({
         e.preventDefault();
         var proposition = {
             name: e.currentTarget.name.value,
-            status: true
+            // status: true
         };
         SingleProposition.insert(proposition);
         history.back();

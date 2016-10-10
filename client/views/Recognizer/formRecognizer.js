@@ -17,6 +17,8 @@ Template.formRecognizer.events({
             }
             else{
                 Materialize.toast("Rules added correctly", 2000, "blue");
+                $("#sentence").val("");
+                $("#sentence").focus();
             }
         });
         
@@ -28,5 +30,9 @@ Template.formRecognizer.events({
     'click #cancel': function (e) {
         e.preventDefault();
         history.back()
+    },
+    'click #addDefault': function (e) {
+        e.preventDefault();
+        Meteor.call("addDefaultRules");
     }
 });

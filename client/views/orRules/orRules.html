@@ -1,0 +1,32 @@
+<template name="orRules">
+    <h1>OR RULES</h1>
+
+    <button id="convert" class="btn blue">Convert to OR</button>
+    <button id="deleteAll" class="btn red">Delete all</button>
+
+    <!--{{#each orRulesReactive}}-->
+        <!--<li>-->
+            <!--{{#each orPrepositions}}-->
+
+                    <!--{{#if isFalse}}-->
+                        <!--<label class="red-text">"NO"</label>-->
+                    <!--{{/if}}-->
+                    <!--{{>nameOrRule}} <label class="blue-text">"OR"</label>-->
+
+            <!--{{/each}}-->
+        <!--</li>-->
+    <!--{{/each}}-->
+
+
+    <div class="row">
+        <div class="col s6">
+            {{>listAndRules}}
+        </div>
+
+        <div class="col s6">
+            {{>listOrRules}}
+        </div>
+    </div>
+
+
+</template>

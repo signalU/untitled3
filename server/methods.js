@@ -92,6 +92,12 @@ Meteor.methods({
     },
     addDefaultRules: function () {
         
+    },
+    addOrRule: function (orRule) {
+        OrRules.insert(orRule);
+    },
+    deleteOrRules: function () {
+        OrRules.remove({});
     }
 
 });

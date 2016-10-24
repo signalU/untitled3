@@ -7,6 +7,7 @@ Template.chaining.onCreated(function () {
     this.propositionsByType = new ReactiveVar([]);
     this.onlyPredecessors = new ReactiveVar([]);
     this.rules = new ReactiveVar([]);
+    this.conclusions = new ReactiveVar([]);
 
     var self = Template.instance();
     Meteor.call("allRules", function (error, data) {
@@ -17,19 +18,7 @@ Template.chaining.onCreated(function () {
             self.rules.set(data)
         }
     });
-    // this.changedSection = function( val ) {
-    //     this.idSelectedSection.set(val);
-    //     var self = this;
-    //     Meteor.setTimeout( function() {
-    //
-    //         //TODO: Parche para borrar el caret residual, remover cuando actualizen y lo fixeen en Meteor Materialize.
-    //         self.$('select').parent().find(".caret").remove();
-    //         // Fin del parche
-    //
-    //         self.$('select').material_select('destroy');
-    //         self.$('select').material_select();
-    //     }, 10);
-    // }.bind(this);
+ 
     
     
     this.changeValuePropositions = function (obj, value) {
@@ -38,8 +27,12 @@ Template.chaining.onCreated(function () {
         var rules = self.rules.get();
         var conclusions = [];
         for(var i = 0; i < rules.length; i++){
+            // console.log(rules[i].consequent._idConsequent);
+            var aName = SingleProposition.findOne({"_id": new Mongo.ObjectID(rules[i].consequent._idConsequent)}).name;
+            console.log(rules.length, "LENGTH", i, aName);
             for(var j = 0; j < rules[i].predecessor.length; j++){
                 // console.log(rules[i].predecessor[j]._idAntecesorProposition);
+                var tem=true;
                 if(rules[i].predecessor[j]._idAntecesorProposition == _id){
                     // rules[i].predecessor[j].value = true;
                     // template.rules.set(rules);
@@ -55,58 +48,70 @@ Template.chaining.onCreated(function () {
                     }
                     if(value){
                         rules[i].predecessor.splice(j, 1);
+                        self.rules.set(rules);
                     }
                     else {
-                        rules.splice(i, 1);
-                    }
-                    self.rules.set(rules);
+                        // if(rules[i]._idConsequent)
+                        // if(rules[i].consequent._idConsequent)
 
-                    if(rules[i].predecessor == null){
-                        // conclusions.push([{"_id": rules[i].consequent}, rules[i].consequent.isFalse ? true: false]);
-                        self.changeValuePropositions({"_id": rules[i].consequent}, rules[i].consequent.isFalse ? true: false);
+
+                        var data = self.propositionsByType.get();
+                        // console.log(data.intermediate, "INTERMEDIATE");
+                        var isIntermediate = false;
+                        for(var k = 0; k < data.intermediate.length; k++){
+                            // console.log(data.intermediate[i]._id, rules)
+                            if(data.intermediate[k]._id == rules[i].consequent._idConsequent){
+                                isIntermediate = true;
+                                var aName = SingleProposition.findOne({"_id": new Mongo.ObjectID(rules[i].consequent._idConsequent)}).name;
+                                console.log("It's intermediate ", isIntermediate, data.intermediate[k]._id, aName);
+
+                            }
+                        }
+
+                        if(isIntermediate){
+                            var temp = self.onlyPredecessors.get();
+                            var newItem = {
+                                "_id": rules[i].consequent._idConsequent
+                            };
+                            temp.push(newItem);
+                            // i++
+                        }
+
+                        // self.rules.set(rules);
+
+
+                        rules.splice(i, 1);
+                        i--;
+
+                        self.rules.set(rules);
+
+
+
+
+                        break;
                     }
+                    // self.rules.set(rules);
                 }
-             
+                // var rules = self.rules.get();
+                // if(rules[i] == null){
+                //     continue;
+                // }
+
+
+                if(rules[i].predecessor.length == 0){
+                    // conclusions.push([{"_id": rules[i].consequent}, rules[i].consequent.isFalse ? true: false]);
+                    self.changeValuePropositions({"_id": rules[i].consequent._idConsequent}, rules[i].consequent.isFalse ? false: true);
+                    // var conclusions = self.conclusions.get();
+                }
             }
+
+            // console.log("??????????");
+            // console.log(rules);
+            // rules.splice(i, 1);
+            // console.log(rules);
             
         }
     }.bind(this);
-    // Meteor.call('finalConclusions', function (error, data) {
-    //     if(error){
-    //         Materialize.toast("Error in final conclusions", 2000, "red");
-    //     }
-    //     else{
-    //         // final.push("c");
-    //         // console.log(data, "data");
-    //         // Template.instance().finalConclusion.set(data);
-    //         // var a = Template.instance().finalConclusion.get();
-    //         // console.log(a);
-    //         // final.push(data);
-    //         console.log(data, "DATA");
-    //         // final.push(data);
-    //         // some = data;
-    //         // var qq = data;
-    //         // console.log(qq, "QQ");
-    //         self.finalConclusions.set(data);
-    //
-    //     }
-    
-    
-    // });
-
-    // var self = this;
-    // Meteor.call('finalConclusions', function (error, data) {
-    //     if(error){
-    //         Materialize.toast("Error in final conclusions", 2000, "red");
-    //     }
-    //     else{
-    //         // final.push("c");
-    //         // console.log(data, "data");
-    //         self.finalConclusions.set(data);
-    //         // final.push(data);
-    //     }
-    // }.bind(this));
-    // console.log(self.finalConclusions.get());
     
     Meteor.call('prepositionClassification', function (error, data) {
             if(error){
@@ -118,6 +123,7 @@ Template.chaining.onCreated(function () {
 
                 // self.finalConclusions.set(data);
                 self.propositionsByType.set(data);
+                // console.log("DATA: ", data);
                 console.log("Predecessors: ", data.only_predecessors);
                 self.onlyPredecessors.set(data.only_predecessors);
 

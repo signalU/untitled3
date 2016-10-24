@@ -3,7 +3,7 @@
  */
 
 Template.propositionName.onCreated(function () {
-   // console.log(this.data._id);
+   console.log(this.data._id);
     // console.log(SingleProposition.findOne({"_id": this.data._id}));
 });
 

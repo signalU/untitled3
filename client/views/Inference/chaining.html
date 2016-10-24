@@ -68,4 +68,55 @@
     </div>
 
 
+    <div class="row">
+        <h2 id="conclusions">Conclusions</h2>
+        {{#each Allconclusions}}
+            <!--{{#if isFalse}}-->
+                <!--&lt;!&ndash;"NO"&ndash;&gt;-->
+                <!--<label class="red-text">"NO"</label>-->
+            <!--{{/if}}-->
+
+           <!--{{> propositionName}}-->
+
+
+                <li class="collection-item">
+                    {{#with consequent}}
+                        It is:
+                        {{#if isFalse}}
+                            <!--"NO"-->
+                            <label class="red-text">"NO"</label>
+
+                        {{else}}
+                            <label class="blue-text">"YES</label>
+                        {{/if}}
+
+                        {{>nameConsequent}}
+                        <!--{{namePre _idConsequent}}-->
+                    {{/with}}
+
+                    because:
+
+                    {{#each predecessor}}
+                        {{#if isFalse}}
+                            <label class="red-text">"NO"</label>
+
+                        {{else}}
+                            <label class="blue-text">"YES</label>
+                        {{/if}}
+                        <!--{{name }}  "AND"-->
+                            <!--{{#if value}}-->
+                        <!--1-->
+                            <!--{{else}}-->
+                        {{> nameRule }}  <label class="blue-text">"AND"</label>
+                        <!--{{ namePre _idAntecesorProposition}}  <label class="blue-text">"AND"</label>-->
+
+                            <!--{{/if}}-->
+                    {{/each}}
+
+
+                </li>
+        {{/each}}
+    </div>
+
+
 </template>

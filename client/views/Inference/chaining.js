@@ -74,10 +74,8 @@ Template.chaining.onCreated(function () {
                                 "_id": rules[i].consequent._idConsequent
                             };
                             temp.push(newItem);
-                            // i++
                         }
 
-                        // self.rules.set(rules);
 
 
                         rules.splice(i, 1);
@@ -101,7 +99,25 @@ Template.chaining.onCreated(function () {
                 if(rules[i].predecessor.length == 0){
                     // conclusions.push([{"_id": rules[i].consequent}, rules[i].consequent.isFalse ? true: false]);
                     self.changeValuePropositions({"_id": rules[i].consequent._idConsequent}, rules[i].consequent.isFalse ? false: true);
+                    
                     // var conclusions = self.conclusions.get();
+                    // var aName = SingleProposition.findOne({"_id": new Mongo.ObjectID(rules[i].consequent._idConsequent)}).name;
+                    // var obj = {
+                    //     // "_id": aName
+                    //     "_id": rules[i].consequent._idConsequent,
+                    //     "isFalse": rules[i].consequent.isFalse
+                    // };
+                    // conclusions.push(obj);
+                    // self.conclusions.set(conclusions);
+
+                    var conclusions = self.conclusions.get();
+                    // console.log("RULE IDDD: ", rules[i]._id.valueOf());
+                    var rule = Rules.findOne({"_id": rules[i]._id});
+                    conclusions.push(rule);
+                    self.conclusions.set(conclusions);
+
+
+
                 }
             }
 
@@ -164,6 +180,13 @@ Template.chaining.helpers({
     namePre: function (_id) {
         // console.log("PREE", _id);
         return _id ? SingleProposition.findOne({"_id": new Mongo.ObjectID(_id)}).name: null
+    },
+    Allconclusions: function () {
+        // var self = Template.instance();
+        // // return self.conclusions.get() ? self.conclusions.get(): null
+        // return self.conclusions.get()
+        var self = Template.instance();
+        return self.conclusions.get() ? self.conclusions.get(): null;
     }
 });
 
@@ -212,5 +235,8 @@ Template.chaining.events({
     },
     'click #questions': function (event, template) {
         console.log(template.onlyPredecessors.get());
+    },
+    'click #conclusions': function (event, template) {
+        console.log(template.conclusions.get());
     }
 });

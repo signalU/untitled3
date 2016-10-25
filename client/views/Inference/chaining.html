@@ -1,8 +1,16 @@
 <template name="chaining">
     <h2>Chaining</h2>
 
+
     <div class="row">
-        <button id="backwards" class="btn blue">Backwards</button>
+
+
+        <a href="{{pathFor 'backwards'}}">
+            <button id="backwards" class="btn blue"  >Backwards</button>
+        </a>
+        <!--<a class="btn-floating btn-large green"  href="{{pathFor 'backwards'}}">-->
+            <!--<button>so</button>-->
+        <!--</a>-->
         <button id="ahead" class="btn light-blue">Ahead</button>
     </div>
 
@@ -14,8 +22,8 @@
     <div class="row">
         final conclusions
 
-        {{finalConclusions}}
     </div>
+    {{finalConclusions}}
 
     <div class="row">
         <div class="col s6">

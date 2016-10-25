@@ -91,7 +91,62 @@ Meteor.methods({
         });
         return fut.wait();
     },
+    backwards: function (_id) {
+        var fut = new Future();
+        // exec('pythonScriptCommand with parameters', function (error, stdout, stderr) {
+        // exec('python /home/diego/Desktop/py/file.py ' + "' "+ obj + " '", function (error, stdout, stderr) {
+        // exec('python3 /home/diego/Documents/IDS/6 semester/Expert Systems/Practices/Expert1/solve/solve.py ' + obj, function (error, stdout, stderr) {
+        var dir = 'python3 /home/diego/Documents/IDS/6_semester/ExpertSystems/Practices/Expert1/solve/backwards/backwards_rules.py';
+        exec(dir + " ' "+ _id + " '" , function (error, stdout, stderr) {
+            if(error){
+                console.log(error.reason, ": error");
+                throw new Meteor.Error(error, error);
+            }
+
+
+            // if you want to write to Mongo in this callback
+            // you need to get yourself a Fiber
+            new Fiber(function(error) {
+                if (error) {
+                    throw new Meteor.Error(error, error);
+                }
+
+                if (stdout) {
+                    console.log(stdout)
+                    Stdout.insert({
+                        timestamp : new Date().getTime(),
+                        data : stdout
+                    });
+                }
+                if (stderr) {
+                    Stderr.insert({
+                        timestamp : new Date().getTime(),
+                        data : stderr
+                    });
+                    throw new Meteor.Error(stderr, stderr);
+                }
+                var result;
+                eval( 'result=' + stdout );
+                console.log(result);
+                fut.return(result);
+            }).run();
+
+        });
+        return fut.wait();
+    },
     allRules: function () {
         return Rules.find().fetch();
+    },
+    backwardsRules: function (obj) {
+        
+        var _idRules = obj;
+        // console.log(_idRules);
+        var rules = [];
+        for(var i = 0; i < _idRules.length; i++){
+            console.log(_idRules[i]._id, "NEW RULE SERVER");
+            var rule = Rules.find({"_id": Mongo.ObjectID(_idRules[i]._id)}).fetch();
+            rules.push(rule)
+            console.log("RULE: ", rule)
+        }
     }
 });

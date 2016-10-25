@@ -1,3 +1,129 @@
 <template name="backwardsChaining">
     <h1>Backwards</h1>
+
+    <div class="raw">
+        <ul>
+            {{#each final}}
+                <li>
+
+                    <p id="final">{{> propositionName}}</p>
+
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+
+
+    <div class="raw">
+        {{#with finalSelected}}
+            Chaining of:
+            {{>propositionName finalSelected}}
+        {{/with}}
+    </div>
+
+
+
+    <div class="row">
+        <div class="col s6">
+            <h2 id="questions">Questions</h2>
+            {{#each predecessorQuestions}}
+                <div class="row">
+                    {{>propositionName}}
+                    <button id="optionTrue" class="btn blue decision">True</button>
+                    <button id="optionFalse" class="btn red decision">False</button>
+                </div>
+
+
+
+            {{/each}}
+
+        </div>
+        <div class="col s6">
+            <!--{{>rulesList}}-->
+            <h2> Rules</h2>
+            {{#each rule}}
+                <li class="collection-item">
+                    {{#each predecessor}}
+                        {{#if isFalse}}
+                            <label class="red-text">"NO"</label>
+                        {{/if}}
+                        <!--{{name }}  "AND"-->
+                            <!--{{#if value}}-->
+                        <!--1-->
+                            <!--{{else}}-->
+                        {{> nameRule }}  <label class="blue-text">"AND"</label>
+                        <!--{{ namePre _idAntecesorProposition}}  <label class="blue-text">"AND"</label>-->
+
+                            <!--{{/if}}-->
+                    {{/each}}
+                    --->
+                    {{#with consequent}}
+                        {{#if isFalse}}
+                            <!--"NO"-->
+                            <label class="red-text">"NO"</label>
+                        {{/if}}
+
+                        {{>nameConsequent}}
+                        <!--{{namePre _idConsequent}}-->
+                    {{/with}}
+                </li>
+
+            {{/each}}
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <h2 id="conclusions">Conclusions</h2>
+        {{#each Allconclusions}}
+        <!--{{#if isFalse}}-->
+            <!--&lt;!&ndash;"NO"&ndash;&gt;-->
+            <!--<label class="red-text">"NO"</label>-->
+                <!--{{/if}}-->
+
+            <!--{{> propositionName}}-->
+
+
+            <li class="collection-item">
+                {{#with consequent}}
+                    It is:
+                    {{#if isFalse}}
+                        <!--"NO"-->
+                        <label class="red-text">"NO"</label>
+
+                    {{else}}
+                        <label class="blue-text">"YES</label>
+                    {{/if}}
+
+                    {{>nameConsequent}}
+                    <!--{{namePre _idConsequent}}-->
+                {{/with}}
+
+                because:
+
+                {{#each predecessor}}
+                    {{#if isFalse}}
+                        <label class="red-text">"NO"</label>
+
+                    {{else}}
+                        <label class="blue-text">"YES</label>
+                    {{/if}}
+                    <!--{{name }}  "AND"-->
+                        <!--{{#if value}}-->
+                    <!--1-->
+                        <!--{{else}}-->
+                    {{> nameRule }}  <label class="blue-text">"AND"</label>
+                    <!--{{ namePre _idAntecesorProposition}}  <label class="blue-text">"AND"</label>-->
+
+                        <!--{{/if}}-->
+                {{/each}}
+
+
+            </li>
+        {{/each}}
+    </div>
+
+
+
 </template>

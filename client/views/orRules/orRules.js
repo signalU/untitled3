@@ -33,10 +33,17 @@ Template.orRules.events({
                orRule.push(item);
 
            }
-           var isFalse = rules[i].consequent.isFalse;
-           isFalse = isFalse ? false: true;
+
+
+           // var isFalse = rules[i].consequent.isFalse;
+           // isFalse = isFalse ? false: true;
+           // var item = {
+           //     "isFalse": isFalse,
+           //     "_idPreposition": rules[i].consequent._idConsequent
+           // };
+
            var item = {
-               "isFalse": isFalse,
+               "isFalse": rules[i].consequent.isFalse,
                "_idPreposition": rules[i].consequent._idConsequent
            };
 

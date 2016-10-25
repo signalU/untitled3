@@ -1,0 +1,97 @@
+<template name="objectives">
+    <h1>Objectives</h1>
+
+    <div class="row">
+        <div class="col s6">
+            <h2> Atoms</h2>
+            {{#each atoms}}
+                <li class="collection-item" id="item">
+
+                    {{name}}
+                        <!--{{#each orPrepositions}}-->
+                        <!--{{#if isFalse}}-->
+                        <!--<label class="red-text">"NO"</label>-->
+                            <!--{{/if}}-->
+                    <!--&lt;!&ndash;{{name }}  "AND"&ndash;&gt;-->
+                    {{#if value}}
+                        <!--&lt;!&ndash;1&ndash;&gt;-->
+                    {{else}}
+                        <!--{{> nameOrRule }}  <label class="blue-text">"OR"</label>-->
+                        <!--&lt;!&ndash;{{ namePre _idAntecesorProposition}}  <label class="blue-text">"AND"</label>&ndash;&gt;-->
+
+                    {{/if}}
+                        <!--{{/each}}-->
+
+                </li>
+
+            {{/each}}
+        </div>
+
+        <div class="col s6">
+            <h2 id="conclusions">Conclusions</h2>
+
+            {{#each conclusions}}
+                <li class="collection-item">
+                    {{#if isFalse}}
+                        <label class="red-text">"NO"</label>
+                    {{/if}}
+                    <!--{{name }}  "AND"-->
+                        <!--{{#if value}}-->
+                    <!--1-->
+                        <!--{{else}}-->
+                    {{> propositionName }}
+                    <!--{{ namePre _idAntecesorProposition}}  <label class="blue-text">"AND"</label>-->
+
+                        <!--{{/if}}-->
+
+                </li>
+
+            {{/each}}
+
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col s6">
+            <h2 id="questions">Questions</h2>
+            {{#each questions}}
+                <div class="row">
+                    {{>propositionName}}
+                    <button id="optionTrue" class="btn blue decision">True</button>
+                    <button id="optionFalse" class="btn red decision">False</button>
+                </div>
+
+
+
+            {{/each}}
+
+        </div>
+
+        <div class="col s6">
+            <!--{{>rulesList}}-->
+            <h2> Rules</h2>
+            {{#each rules}}
+                <li class="collection-item">
+                    {{#each orPrepositions}}
+                        {{#if isFalse}}
+                            <label class="red-text">"NO"</label>
+                        {{/if}}
+                        <!--{{name }}  "AND"-->
+                            <!--{{#if value}}-->
+                        <!--1-->
+                            <!--{{else}}-->
+                        {{> nameOrRule }}  <label class="blue-text">"OR"</label>
+                        <!--{{ namePre _idAntecesorProposition}}  <label class="blue-text">"AND"</label>-->
+
+                            <!--{{/if}}-->
+                    {{/each}}
+
+                </li>
+
+            {{/each}}
+        </div>
+    </div>
+
+</template>

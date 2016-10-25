@@ -5,8 +5,8 @@
 
 Template.nameOrRule.helpers({
     nameOr: function () {
-        var self = Template.instance();
-        return SingleProposition.findOne({"_id": new Mongo.ObjectID(self.data._idPreposition)}).name;
-        // return SingleProposition.findOne({"_id": new Mongo.ObjectID(self.data._id)}).name
+        // var self = Template.instance();
+        // return SingleProposition.findOne({"_id": new Mongo.ObjectID(self.data._idPreposition)}).name;
+        return SingleProposition.findOne({"_id": new Mongo.ObjectID(Template.instance().data._idPreposition)}).name
     }
 })

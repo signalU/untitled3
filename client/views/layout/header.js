@@ -11,6 +11,7 @@ Template.header.helpers({
         result.push({href:'/addSentence',value:'add Sentence', icon:'mdi-action-face-unlock'});
         result.push({href: '/chaining', value: 'Chaining', icon: 'mdi-action-face-unlock'});
         result.push({href: '/convert', value: 'Converter', icon: 'mdi-action-face-unlock'});
+        result.push({href: '/objectives', value: 'Objectives', icon: 'mdi-action-face-unlock'});
         return result;
     },
     showMenu: function () {

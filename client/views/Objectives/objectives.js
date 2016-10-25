@@ -76,13 +76,13 @@ Template.objectives.onCreated(function () {
                     conclusions.push(conclusion);
                     self.conclusions.set(conclusions);
 
-                    var questions = self.questions.get();
-                    var index = questions.indexOf({"_id": _idConclusion});
-                    console.log({"_id": _idConclusion}, "THIS AUTO", index);
-                    console.log(questions);
-                    questions = questions.splice(index, 1);
-                    console.log(questions);
-                    self.questions.set(questions);
+                    // var questions = self.questions.get();
+                    // var index = questions.indexOf({"_id": _idConclusion});
+                    // console.log({"_id": _idConclusion}, "THIS AUTO", index);
+                    // console.log(questions);
+                    // questions = questions.splice(index, 1);
+                    // console.log(questions);
+                    // self.questions.set(questions);
 
                     self.changeValueOrPropositions(_idConclusion, rules[i].orPrepositions[j].isFalse ? false: true);
 

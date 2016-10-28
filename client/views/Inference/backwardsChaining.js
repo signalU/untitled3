@@ -10,6 +10,7 @@ Template.backwardsChaining.onCreated(function () {
     this.finalSelected = new ReactiveVar([]);
     this.rules = new ReactiveVar([]);
     this.conclusions = new ReactiveVar([]);
+    this.inconclusions = new ReactiveVar([]);
     var self = this;
 
 
@@ -85,6 +86,22 @@ Template.backwardsChaining.onCreated(function () {
         // var value;
         var rules = self.rules.get();
         var conclusions = [];
+
+        // for(var i = 0; i < rules.length; i++){
+        //     rules[i].consequent._idConsequent
+        // }
+
+
+        //
+        // var final = self.finalSelected.get();
+        // var count = 0;
+        // for (var k = 0; k < rules.length; k++) {
+        //     if (rules[k].consequent._idConsequent === final._id) {
+        //         count++;
+        //     }
+        // }
+        // console.log(count, "TIMES");
+
         for(var i = 0; i < rules.length; i++){
             // console.log(rules[i].consequent._idConsequent);
             var aName = SingleProposition.findOne({"_id": new Mongo.ObjectID(rules[i].consequent._idConsequent)}).name;
@@ -136,6 +153,29 @@ Template.backwardsChaining.onCreated(function () {
                         }
 
 
+                        var final = self.finalSelected.get();
+                        Materialize.toast(final._id, 2000, "red");
+                        // console.log(final._id, "FINAAAAAAAAALL");
+
+
+                        var count = 0;
+                        for (var k = 0; k < rules.length; k++) {
+                            if (rules[k].consequent._idConsequent === final._id) {
+                                count++;
+                            }
+                        }
+                        console.log(count, "TIMES");
+
+
+
+                        if(rules[i].consequent._idConsequent == final._id && count == 1){
+                            Materialize.toast("Indeterminado", 2000, "red");
+                            self.rules.set([]);
+                            self.onlyPredecessors.set([]);
+                            self.inconclusions.set(final);
+                            console.log(self.inconclusions.get(), "INCONCLUSION");
+
+                        }
 
                         rules.splice(i, 1);
                         i--;
@@ -251,6 +291,10 @@ Template.backwardsChaining.helpers({
         // return self.conclusions.get()
         var self = Template.instance();
         return self.conclusions.get() ? self.conclusions.get(): null;
+    },
+    inconclusions: function () {
+        var self = Template.instance();
+        return self.inconclusions.get();
     }
 });
 

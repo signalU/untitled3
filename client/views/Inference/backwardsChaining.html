@@ -122,6 +122,16 @@
 
             </li>
         {{/each}}
+
+        <div class="raw col s6 right">
+            {{#with inconclusions}}
+                <h4>Indeterminate</h4>
+                    <!--{{#each inconclusions}}-->
+                {{>propositionName}}
+                    <!--{{/each}}-->
+            {{/with}}
+        </div>
+
     </div>
 
 

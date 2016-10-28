@@ -71,7 +71,7 @@ Template.objectives.onCreated(function () {
                     var _idConclusion = rules[i].orPrepositions[j]._idPreposition;
 
                     var conclusions = self.conclusions.get();
-                    var conclusion = {"_id": _idConclusion, "isFalse": rules[i].orPrepositions[0].isFalse};
+                    var conclusion = {"_id": _idConclusion, "isFalse": rules[i].orPrepositions[j].isFalse};
 
                     conclusions.push(conclusion);
                     self.conclusions.set(conclusions);

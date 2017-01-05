@@ -25,6 +25,15 @@
                 </li>
 
             {{/each}}
+
+
+        </div>
+
+        <div class="raw">
+            {{#with finalSelected}}
+                Chaining of:
+                {{>propositionName finalSelected}}
+            {{/with}}
         </div>
 
         <div class="col s6">
@@ -49,6 +58,15 @@
             {{/each}}
 
 
+            <div class="raw col s6 right">
+                {{#with inconclusions}}
+                    <h4>Indeterminate</h4>
+                        <!--{{#each inconclusions}}-->
+                    {{>propositionName}}
+                        <!--{{/each}}-->
+                {{/with}}
+            </div>
+
         </div>
 
     </div>
@@ -56,7 +74,18 @@
     <div class="row">
         <div class="col s6">
             <h2 id="questions">Questions</h2>
-            {{#each questions}}
+            <!--{{#each questions}}-->
+                <!--<div class="row">-->
+                    <!--{{>propositionName}}-->
+                    <!--<button id="optionTrue" class="btn blue decision">True</button>-->
+                    <!--<button id="optionFalse" class="btn red decision">False</button>-->
+                <!--</div>-->
+
+
+
+            <!--{{/each}}-->
+
+            {{#with oneQuestion}}
                 <div class="row">
                     {{>propositionName}}
                     <button id="optionTrue" class="btn blue decision">True</button>
@@ -65,7 +94,7 @@
 
 
 
-            {{/each}}
+            {{/with}}
 
         </div>
 
